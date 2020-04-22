@@ -12,7 +12,7 @@ class Importar extends Component {
                 <ContentHeader title='Importar' small='Importação de produtos para o sistema' />
                 <Content>
                     <Row>
-                        <input type="file" accept=".dbf" name="xlfile" id="xlf" onChange={(e)=>this.onChange(e)}/>
+                        <input type="file" accept=".dbf" name="xlfile" id="xlf" onChange={ (e)=>this.onChange(e) }/>
                     </Row>
                 </Content>
             </div>
@@ -22,10 +22,11 @@ class Importar extends Component {
     onChange(e) {
         const file = e.target.files
         const reader = new FileReader()
-        reader.readAsArrayBuffer(file[0])
+        if (file[0]) {
+            reader.readAsArrayBuffer(file[0])
+        }    
         reader.onload = (e) => {
-            const data1 = new Uint8Array(e.target.result)
-            const workbook = XLSX.read(data1, {type: 'array'})
+            const workbook = XLSX.read(new Uint8Array(e.target.result), {type: 'array'} )
             const first_worksheet = workbook.Sheets[workbook.SheetNames[0]]
             const data = XLSX.utils.sheet_to_json(first_worksheet, {header:1})
             console.log(data)
