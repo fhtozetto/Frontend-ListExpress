@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react'
 
 export default props => (
@@ -10,7 +11,7 @@ export default props => (
             </span>
         </a>
         <nav className='navbar navbar-static-top'>
-            <a href className='sidebar-toggle' data-toggle='offcanvas'></a>
+            <a href="true" className='sidebar-toggle' data-toggle='offcanvas'></a>
         </nav>
     </header>
 )

@@ -3,17 +3,28 @@ import React, { Component } from 'react'
 import ContentHeader from '../../common/template/contentHeader'
 import Content from '../../common/template/content'
 import Row from '../../common/layout/row'
+import Table from '../../common/layout/table/table'
+import Progress from '../../common/layout/progress'
 import XLSX from 'xlsx'
 
 class Importar extends Component {
+    state = {
+        lista: []
+    }
+
+    listaDeProdutos = (produtos) => {
+        this.setState({lista: produtos})
+    }
+
     render() {
         return (
             <div>
                 <ContentHeader title='Importar' small='Importação de produtos para o sistema' />
                 <Content>
-                    <Row>
-                        <input type="file" accept=".dbf" name="xlfile" id="xlf" onChange={ (e)=>this.onChange(e) }/>
-                    </Row>
+                    <Row></Row>
+                    <input type="file" accept=".dbf" name="xlfile" id="xlf" onChange={(e) => this.onChange(e)} />
+                    <Table produtos={this.state.lista}></Table>
+                    <Progress></Progress>
                 </Content>
             </div>
         )
@@ -24,12 +35,14 @@ class Importar extends Component {
         const reader = new FileReader()
         if (file[0]) {
             reader.readAsArrayBuffer(file[0])
-        }    
-        reader.onload = (e) => {
-            const workbook = XLSX.read(new Uint8Array(e.target.result), {type: 'array'} )
-            const first_worksheet = workbook.Sheets[workbook.SheetNames[0]]
-            const data = XLSX.utils.sheet_to_json(first_worksheet, {header:1})
-            console.log(data)
+            reader.onload = (e) => {
+                const workbook = XLSX.read(new Uint8Array(e.target.result), { type: 'array' })
+                const first_worksheet = workbook.Sheets[workbook.SheetNames[0]]
+                const data = XLSX.utils.sheet_to_json(first_worksheet, { header: 1 })
+                this.listaDeProdutos(data)
+            }
+        } else {
+            this.listaDeProdutos()
         }
     }
 }
