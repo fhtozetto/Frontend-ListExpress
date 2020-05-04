@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import ContentHeader from '../../common/template/contentHeader'
 import Content from '../../common/template/content'
 import Row from '../../common/layout/row'
-import Table from '../../common/layout/table/table'
-import Progress from '../../common/layout/progress'
+import Table from './table/table'
+import Progress from './progress'
 import XLSX from 'xlsx'
 
 class Importar extends Component {
