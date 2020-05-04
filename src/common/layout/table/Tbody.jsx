@@ -1,11 +1,12 @@
 import React from 'react'
 
 export default props => {
-     const lista = props.produtos || []
-
+    const lista = props.produtos || []
+    let key = 0
+    
     const listaProdutos = itens => {
         return itens.map(item => (
-            <tr>
+            <tr key={key++}>
                 <td>{item[6]}</td>
                 <td>{item[0]}</td>
                 <td>{item[1]}</td>

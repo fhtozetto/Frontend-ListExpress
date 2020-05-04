@@ -13,7 +13,7 @@ class Importar extends Component {
     }
 
     listaDeProdutos = (produtos) => {
-        this.setState({lista: produtos})
+        this.setState({ lista: produtos })
     }
 
     render() {
