@@ -1,5 +1,5 @@
 import React from 'react'
-import Tbody from './Tbody'
+import Tbody from './tbody'
 
 export default props => (
     <div className="box">
