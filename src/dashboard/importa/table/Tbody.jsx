@@ -3,6 +3,8 @@ import React from 'react'
 export default props => {
     const lista = props.produtos || []
     let key = 0
+
+    lista.splice(0, 1)
     
     const listaProdutos = itens => {
         return itens.map(item => (
